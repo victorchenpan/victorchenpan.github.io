@@ -1,4 +1,3 @@
-# <font color="red">Compile uboot</font>
 ## 一.概述：
  众所周知，如果要跑linux kernel(此时先不讨论挂载文件系统这些工作)，我们得先有一个bootloader,那下面就说下其中的一个embedded bootloader-----uboot;一般的开发流程就是：
  a.先下载uboot源码，在主机上通过交叉编译器得到uboot.bin等映像文件，b.然后下载到flash当中，（如果之前开发板中就已经有了bootloader的话，可以通过tftp把主机上的映像先下载到ram中，再写入到flash或emmc中去），c.修改完环境变量再写入到flash中，然后重启就完成了整个bootloader的移植工作。因此最主要的第一步就是编译出合适的uboot映像文件出来。
