@@ -21,5 +21,21 @@ arm-linux-ld: BFD (GNU Binutils) 2.20.1.20100303 assertion fail /work/toolchain/
 Segmentation fault
 Makefile:1171: recipe for target 'u-boot' failed
 make: *** [u-boot] Error 139
-大家如果有解决方法望赐教！
-回寝室继续找方法！
+刚开始还以为是编译器的原因，因为用老的编译器去编译最新的代码库很多时候是不行的，得更新自己的编译器才行，我使用的系统为debian，通过apt-cache search arm gcc找到了gcc-arm-none-eabi，把它下载下来了之后发现还是不行，后来才发现原来是自己失误，没有在Makefile中指定好ARCH，从而导致的。
+指定好了ARCH＝arm之后，再make下，根目录下为：
+api               .config    dts         Kbuild       MAKEALL   snapshot.commit  u-boot.bin       u-boot.lds             .u-boot.srec.cmd
+arch              config.mk  examples    Kconfig      Makefile  System.map       .u-boot.bin.cmd  .u-boot.lds.cmd        u-boot.sym
+board             configs    fs          lib          net       test             u-boot.cfg       u-boot.map             .u-boot.sym.cmd
+.checkpatch.conf  disk       .git        Licenses     post      tools            .u-boot.cfg.cmd  u-boot-nodtb.bin
+cmd               doc        .gitignore  .mailmap     README    .travis.yml      .u-boot.cfg.d    .u-boot-nodtb.bin.cmd
+common            drivers    include     MAINTAINERS  scripts   u-boot           .u-boot.cmd      u-boot.srec
+下面就得知道如何从已有的board下，把和自己板卡硬件类似的板卡库改成符合自己板卡的库了，这部分放在下一篇blog中来记录！
+
+---
+
+## 四.小经验总结
+> 1.在进行uboot移植工作时，不能因为看上去很easy就图快，因为无意间就会忘记一些细节从而浪费更多的时间来弥补。
+
+>2.如果想减小移植工作，可以从cpu开发商官网上去下载他们已经修改过的uboot库（或者称为板级支持包bsp）,而不直接从git://git.denx.de/u-boot中下载。
+
+>3.在此推荐一个比较好用的翻墙工具：lantern
