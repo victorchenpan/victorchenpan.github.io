@@ -1,10 +1,11 @@
 如何将u-boot.bin写入到emmc当中
 ===
-## 一.首先将u-boot写入SD卡中从SD卡启动<br>
+
+## 一.首先将u-boot写入SD卡中从SD卡启动
 ### 进入三星提供的u-boot源码中的/sd_fuse/tiny4412执行sd_fusing.sh<br>
 > cd .../sd_fuse/tiny4412/ && sudo ./sd_fusing.sh /dev/mmcblk0 <br> (...表示u-boot源码根目录，mmcblk0名称在不同系统中的名字有时会不一样)，<br>然后把SD卡插入，并让开发板从SD卡启动。<br>
 
-## 二.将uboot写入emmc，并通过EMMC启动<br>
+## 二.将uboot写入emmc，并通过EMMC启动
 ### mmcinfo 0 : 查看mmc卡信息。0 表示SD卡; 1表示emmc卡<br>
 > TINY4412 # fdisk -p 1<br>
 partion #    size(MB)     block start #    block count    partition_Id <br>
