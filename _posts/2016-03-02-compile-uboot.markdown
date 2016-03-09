@@ -11,7 +11,7 @@
 - b.从git://git.denx.de/u-boot.git下载board中含有自己开发板的代码库，虽然后面新版本的大部分都包含以前的旧库，但还是不建议下载最新的。
 
 ---
-<br>
+
 ## 三.源码的编译：<br>
  - a.从硬件开发商官网下载的代码是经开发商修改好了的，我们可以节省很多时间，因此我们只要查看.../README就可以快速的修改成更适合自己的代码库。
  - b.从git://git.denx.de/u-boot.git下载的代码库，我们要修改的东西就多了点，先在makefile中指定好CORSS_COMPILE,通过make menuconfig 选择好cpu的架构，开发板类型名，uboot命令等选项，保存生成我们的.config文件（如果.../configs下有符合的配置文件的话，可以直接make xxx_deconfig）,然后make all。不过make all通常不会很顺利，会有各种报错产生，一些常规的报错好解决，有时会出现一些我们从没遇到过的错误，通过google也很难找到好方法。比如今天我遇到了一个错误：arm-linux-ld: BFD (GNU Binutils) 2.20.1.20100303 assertion fail /work/toolchain/build/src/binutils-2.20.1/bfd/elf32-arm.c:12195
