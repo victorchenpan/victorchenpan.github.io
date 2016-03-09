@@ -35,8 +35,7 @@ Github:https://github.com/victorchenpan | Blog:https://victorchenpan.github.io
 四级：
     560
 
-
-    喜欢的项目:
+喜欢的项目:
     开源项目：Linux kernel,Uboot,
     Android,GitHub等。
     喜欢的编程语言：C，C++,

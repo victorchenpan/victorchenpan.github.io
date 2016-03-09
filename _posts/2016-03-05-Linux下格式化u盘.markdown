@@ -4,20 +4,20 @@
 ---
 
 ## 方法：
-* 插入u盘，进入/dev下，一般对u盘的命名标志为sdb
+* 插入u盘，进入/dev下，一般对u盘的命名标志为sdb<br>
 >cd /dev && ls
 
-* 对已挂载的分区进行umount
->sudo umount /dev/sdb*
+* 对已挂载的分区进行umount<br>
+>sudo umount /dev/sdb*<br>
 
-* 对u盘进行添加／删除分区
->sudo fdisk /dev/sdb
->>进入fdisk后删除所分分区，再添加一个新的主分区
->>>d 为删除分区命令  n 为新建分区命令  
->> w 再把分区表写入到u盘
+* 对u盘进行添加／删除分区<br>
+> sudo fdisk /dev/sdb<br>
+>> 进入fdisk后删除所分分区，再添加一个新的主分区<br>
+>>> d:为删除分区命令  n:为新建分区命令  <br>
+>> w:再把分区表写入到u盘<br>
 
-* 建立文件系统
-> sudo mkfs.ntfs -f /dev/sdb1
+* 建立文件系统<br>
+> sudo mkfs.ntfs -f /dev/sdb1<br>
 
 ---
 
