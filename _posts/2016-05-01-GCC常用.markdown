@@ -1,0 +1,48 @@
+## 一.前言:<br>
+
+由于最近在写点驱动程序,得重新用到gcc中的一些编译选项,以及给链接脚本指定相关的参数信息,过了许久没用它们,发现每用一个功能都得到网上查看下具体的参数选项,因此干脆把一些常用的记录下来,方便日后查阅.<br>
+
+---
+
+## 二.正文:<br>
+
+1. gcc —c hello.c 只会生成.o的obj文件，它只激活预处理，编译，汇编。
+而—C是使在预处理时不删除注释信息，一般和—E一块使用，方便分析程序。<br>
+2. objdump —s hello.o可以查看程序的所有内存区（.text,.rodata等）的内容。nm工具可以用来查看符号表。<br>
+3. gcc —S hello.c只会激活预处理，编译，生成.S的汇编代码。<br>
+4. gcc —E hello.c > hello.txt  ，此选项只激活预处理，它不生成文件，你得重定向到一个输出文件里。<br>
+5. gcc —pipe —o hello.o hello.c ,此选项只是用管道来替代编译中产生的临时文件。<br>
+6. gcc hello.c —include stdio.h，其实就相当于#include <stdio.h><br>
+7. —Idir是你在用#include "file.h"时，gcc会先在当前目前查找你所制定的头文件，如果没有找到，它会回到缺省的头文件目录找，如果使用了—I制定了目录，它会先在你所制定的目录中查找，然后再按照常规的顺序去查找。对于#include <file>,gcc也是先到你用—I所指定的目录去找，然后才会到系统默认目录找。<br>
+8. —I—是用来取消上一个选项的功能。<br>
+9. —idirafter dir是当在—I所指定的目录中找不到时才到此目录里找。<br>
+10. —nostdinc使编译器不在系统缺省的头文件目录中找头文件。<br>
+11. —llibrary指定编译时用的库，如gcc —lcurses hello.c.<br>
+12. —Ldir用来制定编译时搜索库的路径。dir就是库所在的目录。<br>
+13. —O0到—O3是编译器的四个优化级别，—O0表示没有优化。<br>
+14. —g是让编译器在编译时产生调试信息。<br>
+15. —static此选项将禁止使用动态库，所以编译出来的东西都比较大。<br>
+16. —share此选项将尽量使用动态库。<br>
+17. —traditional试图让编译器支持传统的C语言特性。<br>
+18. —w让编译器不产生任何警告信息。<br>
+19. —Wall生成所有警告信息。<br>
+20. ar的常用用法：ar —t libname.a 显示所有对象。ar —rv libname.a obj1.o obj2.o把obj1,2打包成库文件。<br>
+21. ar的其他选项：d 从库中删除模块；m 在一个库中移动成员；p 显示库中指定的成员到标准输出；q 快速追加新模块到库的结尾处；r 在库中插入或替换模块。<br>
+22. gcc在ARM中所提供的常用选项：—mcpu, —mlittle—endian,—mbig—endian,—march,—mfpu,—mthumb.<br>
+
+---
+
+
+链接器：<br>
+23. 链接器ld把一个或多个输入文件合成一个输出文件。目标文件中的每个section至少要包含两个信息：名字和大小。大部分section还包含与它相关的一块数据，称为section contents.一个section可以被标记为"loadable（可加载的）"或"allocatable(可分配的)"。<br>
+24. loadable section:在输出文件运行时，相应的section内容被载入到进程地址空间。<br>
+25. allocatable section：内容为空，在输出文件运行时，在进程地址空间中空出大小同section指定大小的空间，一般这块内存还得置0。
+26. 对于设定了MEMOTY时，> 是设定对应段的运行地址。
+
+> 最后给出gcc官方文档,以便查看其它的一些特性参数:
+gcc online [document Link](https://gcc.gnu.org/onlinedocs/gcc-6.1.0/gcc/) <br>
+
+---
+
+*writer:victor * <br>
+** date:2016-05-01 13:10**
