@@ -1,0 +1,24 @@
+1. asm(操作符  :输出部:输入部:数据被修改部)中的"r"表示使用寄存器输入value,即将value的值复制给某一寄存器;而“=r”表示使用寄存器输出到value,即将某一寄存器的值赋给变量value。
+2. MCR 指令<br>
+MCR 指令的格式为：<br>
+MCR{条件} 协处理器编码，协处理器操作码1，源寄存器，目的寄存器1，目的寄存器2，协处理器操作码2。<br>
+MCR 指令用于将ARM 处理器寄存器中的数据传送到协处理器寄存器中,若协处理器不能成功完成操作，则产生未定义指令异常。其中协处理器操作码1 和协处理器操作码2 为协处理器将要执行的操作，源寄存器为ARM 处理器的寄存器，目的寄存器1 和目的寄存器2 均为协处理器的寄存器。<br>
+指令示例：
+MCR P3 ， 3 ， R0 ， C4 ， C5 ， 6 ；该指令将 ARM 处理器寄存器 R0 中的数据传送到协处理器 P3 的寄存器 C4 和 C5 中。
+3. MRC 指令<br>
+MRC 指令的格式为：<br>
+MRC{条件} 协处理器编码，协处理器操作码1，目的寄存器，源寄存器1，源寄存器2，协处理器操作码2。<br>
+MRC 指令用于将协处理器寄存器中的数据传送到ARM 处理器寄存器中,若协处理器不能成功完成操作，则产生未定义指令异常。其中协处理器操作码1 和协处理器操作码2 为协处理器将要执行的操作，目的寄存器为ARM 处理器的寄存器，源寄存器1 和源寄存器2 均为协处理器的寄存器。<br>指令示例：
+MRC P3 ， 3 ， R0 ， C4 ， C5 ， 6 ；该指令将协处理器 P3 的寄存器中的数据传送到 ARM 处理器寄存器中.<br>
+4. CONFIG_ARM_VIRT_EXT:Enable the kernel to make use of the ARM Virtualization Extensions to install hypervisors without run-time firmware assistance.<br>
+A compliant bootloader is required in order to make maximum use of this feature. <br>
+5. CONFIG_ARM_LPAE:Support for the Large Physical Address Extension<br>
+Say Y if you have an ARMv7 processor supporting the LPAE page table format and you would like to access memory beyond the 4GB limit. The resulting kernel image will not run on processors without the LPA extension.<br>
+6. CONFIG_XIP_KERNEL:Kernel Execute-In-Place from ROM.<br>
+7. CONFIG_ARM_PATCH_PHYS_VIRT:Patch phys-to-virt and virt-to-phys translation functions at boot and module load time according to the position of the kernel in system memory.<br>
+This can only be used with non-XIP MMU kernels where the base of physical memory is at a 16MB boundary, or theoretically 64K for the MSM machine class.<br>
+8. Cgroups是control groups的缩写，是Linux内核提供的一种可以限制、记录、隔离进程组（process groups）所使用的物理资源（如：cpu,memory,IO等等）的机制。<br>
+9. 任务（task）。在cgroups中，任务就是系统的一个进程。<br>
+10. 控制族群（control group）。控制族群就是一组按照某种标准划分的进程。Cgroups中的资源控制都是以控制族群为单位实现。一个进程可以加入到某个控制族群，也从一个进程组迁移到另一个控制族群。一个进程组的进程可以使用cgroups以控制族群为单位分配的资源，同时受到cgroups以控制族群为单位设定的限制。<br>
+11. 层级（hierarchy）。控制族群可以组织成hierarchical的形式，既一颗控制族群树。控制族群树上的子节点控制族群是父节点控制族群的孩子，继承父控制族群的特定的属性。<br>
+12. 子系统（subsystem）。一个子系统就是一个资源控制器，比如cpu子系统就是控制cpu时间分配的一个控制器。子系统必须附加（attach）到一个层级上才能起作用，一个子系统附加到某个层级以后，这个层级上的所有控制族群都受到这个子系统的控制。<br>
