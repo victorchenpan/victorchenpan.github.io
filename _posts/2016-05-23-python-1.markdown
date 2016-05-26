@@ -1,0 +1,207 @@
+1. 在.py文件首部加上#!/usr/bin/python3 可以像.bin,shell script文件一样执行.<br>
+2. Python使用缩进来组织代码块，坚持使用4个空格的缩进;当语句以冒号:结尾时，缩进的语句视为代码块<br>
+3. Python允许用'''...'''的格式表示多行内容
+>print('''line1
+... line2
+... line3''')<br>
+4. 在Python中，通常用全部大写的变量名表示常量.<br>
+5. //除法只取结果的整数部分,/做精确的除法.<br>
+6. python支持的数据类型:整数,浮点数,字符串,布尔,None;<br>
+7. 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。<br>
+用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件<br>
+8. 浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器<br>
+9. 在最新的Python 3版本中，字符串是以Unicode编码的，也就是说，Python的字符串支持多语言.<br>
+对于单个字符的编码，Python提供了ord()函数获取字符的整数表示，chr()函数把编码转换为对应的字符<br>
+10. Python的字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。如果要在网络上传输，或者保存到磁盘上，就需要把str变为以字节为单位的bytes.如:
+>x = b'ABC'<br>
+11. 以Unicode表示的str通过encode()方法可以编码为指定的bytes，例如：
+>'中文'.encode('utf-8')<br>
+b'\xe4\xb8\xad\xe6\x96\x87'<br>
+12. 要把bytes变为str，就需要用decode()方法：<br>
+>b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')<br>
+'中文'<br>
+13. len()函数计算的是str的字符数.<br>
+14. ython中，采用的格式化方式和C语言是一致的，用%实现，例如：<br>
+>'Hi, %s, you have $%d.' % ('Michael', 1000000)
+'Hi, Michael, you have $1000000.'<br>
+15. 字符串里面的%是一个普通字符怎么办？这个时候就需要转义，用%%来表示一个%：<br>
+>'growth rate: %d %%' % 7<br>
+'growth rate: 7 %'<br>
+16. Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素,list里面的元素的数据类型也可以不同,list元素也可以是另一个list。<br>
+list是一个可变的有序表，所以，可以往list中追加元素到末尾：<br>
+> classmates.append('Adam')<br>
+也可以把元素插入到指定的位置，比如索引号为1的位置：<br>
+classmates.insert(1, 'Jack')<br>
+要删除list末尾的元素，用pop()方法：<br>
+classmates.pop()<br>
+要删除指定位置的元素，用pop(i)方法，其中i是索引位置：<br>
+classmates.pop(1)<br>
+要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：<br>
+classmates[1] = 'Sarah'<br>
+17. 另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改.tuple的数据成员可以是list.只有1个元素的tuple定义时必须加一个逗号,否则当作数学中的().<br>
+18. if...elif...else;if...else.<br>
+19. Python的循环有两种，一种是for...in循环，依次把list或tuple中的每个元素迭代出来:<br>
+>names = ['Michael', 'Bob', 'Tracy']<br>
+for name in names:<br>
+    print(name)<br>
+20. Python提供一个range()函数，可以生成一个整数序列，再通过list()函数可以转换为list:<br>
+>list(range(100,200))<br>[100,...,199]<br>
+21. 第二种循环是while循环，只要条件满足，就不断循环，条件不满足时退出循环.<br>
+> a=15<br>
+while a>=10:<br>
+print(a)<br>
+a--<br>
+22. Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度.<br>
+> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}<br>
+d['Michael']<br>
+95<br>
+23. set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key,要创建一个set，需要提供一个list作为输入集合：<br>
+> s = set([1, 2, 3])<br>
+s<br>
+{1, 2, 3}<br>
+有两个成员函数:add(),remove().
+24. 两个set可以做数学意义上的交集、并集等操作：<br>
+> s1 = set([1, 2, 3])<br>
+s2 = set([2, 3, 4])<br>
+s1 & s2<br>
+{2, 3}<br>
+ s1 | s2<br>
+{1, 2, 3, 4}<br>
+
+---
+
+25. 在Python中，定义一个函数要使用def语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用return语句返回。<br>
+26. 在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple<br>
+27. 默认参数可以简化函数的调用。设置默认参数时，有几点要注意：
+一是必选参数在前，默认参数在后，否则Python的解释器会报错;默认参数必须指向不变对象<br>
+28. 定义可变参数和定义一个list或tuple参数相比，仅仅在参数前面加了一个*号。在函数内部，参数numbers接收到的是一个tuple，因此，函数代码完全不变。但是，调用该函数时，可以传入任意个参数，包括0个参数：<br>
+>def calc(*numbers):<br>
+sum = 0<br>
+for n in numbers:
+sum = sum + n * n<br>
+return sum<br>
+29. 命名关键字参数需要一个特殊分隔符*，*后面的参数被视为命名关键字参数,调用方式如下：<br>
+>person('Jack', 24, city='Beijing', job='Engineer')<br>
+Jack 24 Beijing Engineer<br>
+30. 在Python中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数都可以组合使用。但是，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。<br>
+31. *args是可变参数，args接收的是一个tuple；<br>
+**kw是关键字参数，kw接收的是一个dict.<br>
+32. 使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。解决递归调用栈溢出的方法是通过尾递归优化，事实上尾递归和循环的效果是一样的，所以，把循环看成是一种特殊的尾递归函数也是可以的。<br>
+尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。<br>
+
+---
+
+33. Python切片（Slice）操作符:lists[2:9],取lists[2]...lists[8]<br>
+字符串'xxx'也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：<br>
+> 'ABCDEFG'[:3]<br>
+'ABC'<br>
+'ABCDEFG'[::2]<br>
+'ACEG'<br>
+33. Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身：<br>
+>for i, value in enumerate(['A', 'B', 'C']):<br>
+print(i, value)<br>
+0 A<br>
+1 B<br>
+2 C<br>
+34. 生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。把list、dict、str等Iterable变成Iterator可以使用iter()函数：<br>
+> from collections import Iterator<br>
+isinstance(iter([]),Iterator)<br>
+35. Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的，只有在需要返回下一个数据时它才会计算。<br>
+36. 凡是可作用于for循环的对象都是Iterable类型；<br>
+Python的for循环本质上就是通过不断调用next()函数实现的.<br>
+凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列；<br>
+37. 函数式编程允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+<br>
+38. 高阶函数:可以接收一个为函数的参数.高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回:<br>
+> def lazy_sum(*args):<br>
+def sum():<br>
+ax = 0<br>
+for n in args:<br>
+ax = ax + n<br>
+return ax<br>
+return sum<br>
+39. map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。<br>
+40. Python内建的filter()函数用于过滤序列。
+和map()类似，filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。<br>
+41. sorted()也是一个高阶函数。用sorted()排序的关键在于实现一个映射函数。<br>
+42. 关键字lambda表示匿名函数，匿名函数有个限制，就是只能有一个表达式，不用写return，返回值就是该表达式的结果。
+用匿名函数有个好处，因为函数没有名字，不必担心函数名冲突。<br>
+43. 在面向对象（OOP）的设计模式中，decorator被称为装饰模式。OOP的装饰模式需要通过继承和组合来实现，而Python除了能支持OOP的decorator外，直接从语法层次支持decorator。Python的decorator可以用函数实现，也可以用类实现。<br>
+44. 简单总结functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。<br>
+
+---
+
+45. python中通过以_开头的变量命名来使模块中的成员私有化.<br>
+46. __init__方法的第一个参数永远是self，表示创建的实例本身，因此，在__init__方法内部，就可以把各种属性绑定到self，因为self就指向创建的实例本身。<br>
+47. 在Python中，实例的变量名如果以__开头，就变成了一个私有变量（private），只有内部可以访问，外部不能访问.而变量名类似__xxx__的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量<br>
+48. 如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list.<br>
+49. 由于Python是动态语言，根据类创建的实例可以任意绑定属性。<br>
+50. 特殊的__slots__变量，来限制该class实例能添加的属性：<br>
+> class Student(object):<br>
+__slots__ = ('name', 'age')<br>
+51. __slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的.<br>
+52. __str__()返回用户看到的字符串，而__repr__()返回程序开发者看到的字符串，也就是说，__repr__()是为调试服务的。<br>
+53. 如果一个类想被用于for ... in循环，类似list或tuple那样，就必须实现一个__iter__()方法，该方法返回一个迭代对象，然后，Python的for循环就会不断调用该迭代对象的__next__()方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环。<br>
+54. 按照下标取出元素，需要实现__getitem__()方法 .<br>
+55. __getattr__()方法，动态返回一个属性。<br>
+56. 只有在没有找到属性的情况下，才调用__getattr__，已有的属性，不会在__getattr__中查找。__getattr__默认返回是None<br>
+57. __call__()方法，可以直接在类中对本类中的方法进行调用.<br>
+58. 通过callable()函数，可以判断一个对象是否是“可调用”对象。<br>
+59. type()函数可以查看一个类型或变量的类型,又可以创建出新的类型.type()函数依次传入3个参数：<br>
+class的名称；<br>
+继承的父类集合，注意Python支持多重继承，如果只有一个父类，别忘了tuple的单元素写法；<br>
+class的方法名称与函数绑定.<br>
+60. metaclass，直译为元类，简单的解释就是：
+当我们定义了类以后，就可以根据这个类创建出实例，所以：先定义类，然后创建实例。<br>
+但是如果我们想创建出类呢？那就必须根据metaclass创建出类，所以：先定义metaclass，然后创建类。<br>
+连接起来就是：先定义metaclass，就可以创建类，最后创建实例。<br>
+所以，metaclass允许你创建类或者修改类。换句话说，你可以把类看成是metaclass创建出来的“实例”.<br>
+metaclass是类的模板，所以必须从`type`类型派生：<br>
+>class ListMetaclass(type):<br>
+def __new__(cls, name, bases, attrs):<br>
+attrs['add'] = lambda self, value: self.append(value)<br>
+return type.__new__(cls, name, bases, attrs). <br>
+
+---
+
+61. open()函数还接收一个errors参数，表示如果遇到编码错误后如何处理。最简单的方式是直接忽略：<br>
+>f = open('/Users/michael/gbk.txt', 'r', encoding='gbk', errors='ignore')<br>
+63. 在Python中，文件读写是通过open()函数打开的文件对象完成的。使用with语句操作文件IO可以免去手动对文件进行close().<br>
+64. StringIO是在内存中读写str.要把str写入StringIO，需要先创建一个StringIO，然后，像文件一样写入即可.<br>
+>from io import StringIO<br>
+f = StringIO()<br>
+f.write('hello')<br>
+print(f.getvalue())<br>
+65. 要读取StringIO，可以用一个str初始化StringIO，然后，像读文件一样读取.<br>
+66. StringIO操作的只能是str，如果要操作二进制数据，就需要使用BytesIO.
+BytesIO实现了在内存中读写bytes.<br>
+67. shutil模块提供了copyfile()的函数，hutil模块很多实用函数，它们可以看做是os模块的补充。<br>
+68. 把变量从内存中变成可存储或传输的过程称之为序列化，在Python中叫pickling,序列化之后，就可以把序列化后的内容写入磁盘，或者通过网络传输到别的机器上.
+反过来，把变量内容从序列化的对象重新读到内存里称之为反序列化，即unpickling.Python提供了pickle模块来实现序列化.<br>
+69. 当我们要把对象从磁盘读到内存时，可以先把内容读到一个bytes，然后用pickle.loads()方法反序列化出对象，也可以直接用pickle.load()方法从一个file-like Object中直接反序列化出对象.<br>
+70. 如果我们要在不同的编程语言之间传递对象，就必须把对象序列化为标准格式，比如XML，但更好的方法是序列化为JSON，因为JSON表示出来就是一个字符串，可以被所有语言读取，也可以方便地存储到磁盘或者通过网络传输。JSON不仅是标准格式，并且比XML更快，而且可以直接在Web页面中读取，非常方便。<br>
+71. Python内置的json模块提供了非常完善的Python对象到JSON格式的转换.JSON标准规定JSON编码是UTF-8.<br>
+
+---
+
+72. multiprocessing模块就是跨平台版本的多进程模块.multiprocessing模块提供了一个Process类来代表一个进程对象.<br>
+73. 如果要启动大量的子进程，可以用进程池的方式批量创建子进程：<br>
+> from multiprocessing import Pool<br>
+import os, time, random<br>
+def long_time_task(name):<br>
+    print('Run task %s (%s)...' % (name, os.getpid()))<br>
+    start = time.time()<br>
+    time.sleep(random.random() * 3)<br>
+    end = time.time()<br>
+    print('Task %s runs %0.2f seconds.' % (name, (end - start)))<br>
+if __name__=='__main__':<br>
+    print('Parent process %s.' % os.getpid())<br>
+    p = Pool(4)<br>
+    for i in range(5):<br>
+        p.apply_async(long_time_task, args=(i,))<br>
+    print('Waiting for all subprocesses done...')<br>
+    p.close()<br>
+    p.join()#进程间同步<br>
+    print('All subprocesses done.')<br>
+74. subprocess模块可以让我们非常方便地启动一个子进程，然后控制其输入和输出.<br>
+75. Python的multiprocessing模块包装了底层的机制，提供了Queue、Pipes等多种方式来交换数据.<br>
