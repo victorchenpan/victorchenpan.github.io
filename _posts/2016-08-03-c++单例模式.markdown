@@ -1,0 +1,83 @@
+## 前言:<br>
+在一些实际开发项目当中,一个类只允许一个实例存在,由此在程序员当中广范使用单例模式来实现. <br>
+
+---
+
+## 正文:<br>
+单例模式就是在构造类时把构造函数进行私有化,通过静态数据成员来确定是否已经存在此类的实例.<br>
+
+---
+
+## 实际例子:<br>
+
+### 实例一:<br>
+#### single.h:<br>
+    class single
+    {
+    private:
+	  single();
+	  ~single();
+    public:
+		static single* instance(void);
+		int get_num();
+		void set_num(int);
+    private:
+    //		static single *p;
+		static int num;
+    };
+
+#### single.cpp:<br>
+    //single* single::p=0;
+    int single::num=8;
+    single* single::instance()
+    {
+    //	if(p==NULL)
+    //		p=new single();
+    //	return p;
+  	static single* instance=0;
+	  if(instance==0)
+		   instance=new single();
+	  return instance;
+    }
+    single::single()
+    {
+	    cout<<"constructor!"<<endl;
+    }
+    single::~single()
+    {
+	   	cout<<"析构"<<endl;
+    }
+    void single::set_num(int num)
+    {
+    	single::num=num;
+    }
+    int single::get_num()
+    {
+    	return single::num;
+    }
+
+#### main.cpp:<br>
+    #include "single.h"
+    int main()
+    {
+        single* single_instance= single::instance();
+        single_instance->set_num(88);
+        cout<<"the single::num is: "<< single_instance->get_num()<<endl;
+
+        single* single_p=single::instance();
+        cout<<"the single::num is: "<< single_p->get_num()<<endl;
+        return 0;
+    }
+
+---
+
+### 输出:<br>
+
+    constructor!
+    the single::num is: 88
+    the single::num is: 88
+
+---
+
+## 结语:<br>
+static所修饰的静态变量定义只会执行一次.

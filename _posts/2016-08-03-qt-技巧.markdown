@@ -1,0 +1,14 @@
+## QT技巧当日小结<br>
+1. 在QT当中,可以通过把QString转换成QByteArray,把QByteArray对象写入到buffer中,再调用system()就可以在QT中使用linux下的命令.<br>
+2. 可以在类当中再定义一个类,并定义一个该类的指针来指向其实例.<br>
+3. 要用多线程时,有两种方法,一种是构造QThread的子类,一种是直接new一个QThread的实例,再把相应的对象移到线程中.<br>
+4. 在用QT开发比较大的工程时,可以把关联性强的规为一种类型的.pri,在.pri文件中用SOURCES+=,HEADERS+=,INCLUDEPATH+=来包含这一类型的源代码文件,然后在.pro中用include(*.pri)来包含这些文件.<br>
+5. 在使用一些静态库(*.a),动态库(*.s)之前必须先要确定这是哪一个平台的库,以免到后面出现库不兼容的报错.<br>
+6. QThread的对象是从属于原线程,而QThread::run()是跑在新的线程中.<br>
+7. 友元类B可以通过把其当作朋友的类A的对象去操作类A的对象里的数据成员及成员函数.<br>
+8.  在QT中可以通过调用system()来执行shell命令.<br>
+9.
+      extern C{} 可以用来指定用C编译器来对源代码进行编译.<br>
+10. #progma pack(push);//把当前内存对齐方式入栈<br>
+    #progma pack(1);//把当前内存对齐方式设为1字节<br>
+11.
