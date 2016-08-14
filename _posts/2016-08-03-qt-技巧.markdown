@@ -7,8 +7,17 @@
 6. QThread的对象是从属于原线程,而QThread::run()是跑在新的线程中.<br>
 7. 友元类B可以通过把其当作朋友的类A的对象去操作类A的对象里的数据成员及成员函数.<br>
 8.  在QT中可以通过调用system()来执行shell命令.<br>
-9.
+9.  
       extern C{} 可以用来指定用C编译器来对源代码进行编译.<br>
 10. #progma pack(push);//把当前内存对齐方式入栈<br>
     #progma pack(1);//把当前内存对齐方式设为1字节<br>
-11.
+11. 在实际开发中,一般喜欢将界面美化和功能代码分开,界面美化用QSS来完成,在resource.qrc文件中添加.qss文件,最后在qapp.setStyleSheet()中设置.<br>
+12. 在QT中用QTextStream来对文件进行写入操作时,一定要设置它的编码格式,否则会出现乱码.比如:<br>
+
+    QTextStream out(&eventLogInfo);
+    out.setCodec(QTextCodec::codecForName("UTF-8"));
+    <br>
+13. 对文件进行操作时必须养成一个先对文件进行打开的好习惯,否则文件内容写入不了.<br>
+14. 在linux平台下操作文件夹时,通过QDir::entryInfoList()也会返回
+目录下的当前目录和父目录(即: ** . ** 和 ** .. **) <br>
+15. 在QT下如果用system()来通过操作系统中的命令来操作文件(如复制)的话,由于启用的新的进程,再加上进程间的切换时间导致这种方式会比直接在当前进程下用代码通过文件句柄来操作慢了一万倍以上.<br>
