@@ -5,26 +5,26 @@
 
 * linux/types.h:<br>
 
-        1.dev_t;
-        2.int MAJOR(dev_t dev);
-        3.int MINOR(dev_t dev);
-        4.dev MKDEV(unsigned int major,unsigned int minor);<br>
+    1.dev_t;
+    2.int MAJOR(dev_t dev);
+    3.int MINOR(dev_t dev);
+    4.dev MKDEV(unsigned int major,unsigned int minor);<br>
 
 * linux/fs.h:<br>
 
-        1.int register_chrdev_region(dev_t first,unsigned int count,char* name);
-        2.int alloc_chrdev_region(dev_t* dev,unsigned int firstminor,unsigned int count,char* name);
-        3.void unregister_chrdev_region(dev_t first,unsigned int count);
-        4.struct file;
-        5.struct file_operations;
-        6.struct inode;
+    1.int register_chrdev_region(dev_t first,unsigned int count,char* name);
+    2.int alloc_chrdev_region(dev_t* dev,unsigned int firstminor,unsigned int count,char* name);
+    3.void unregister_chrdev_region(dev_t first,unsigned int count);
+    4.struct file;
+    5.struct file_operations;
+    6.struct inode;
 
 * linux/cdev.h:<br>
 
-        1.struct cdev cdev_alloc(void);
-        2.void cdev_init(struct cdev* dev,struct file_operations* fops);
-        3.int cdev_add(struct cdev* dev,dev_t num,unsigned int count);
-        4.void cdev_del(struct cdev* dev);
+    1.struct cdev cdev_alloc(void);
+    2.void cdev_init(struct cdev* dev,struct file_operations* fops);
+    3.int cdev_add(struct cdev* dev,dev_t num,unsigned int count);
+    4.void cdev_del(struct cdev* dev);
 
 * linux/kernel.h:<br>
 
