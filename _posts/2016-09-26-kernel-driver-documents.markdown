@@ -1,31 +1,33 @@
 ### 内核驱动相关<br>
+
 #### 一.关键头文件及内含的结构体，函数：<br>
+
 * linux/types.h:<br>
 
         1.dev_t;
-      2.int MAJOR(dev_t dev);
-      3.int MINOR(dev_t dev);
-      4.dev MKDEV(unsigned int major,unsigned int minor);<br>
+        2.int MAJOR(dev_t dev);
+        3.int MINOR(dev_t dev);
+        4.dev MKDEV(unsigned int major,unsigned int minor);<br>
 
 * linux/fs.h:<br>
 
         1.int register_chrdev_region(dev_t first,unsigned int count,char* name);
-      2.int alloc_chrdev_region(dev_t* dev,unsigned int firstminor,unsigned int count,char* name);
-      3.void unregister_chrdev_region(dev_t first,unsigned int count);
-      4.struct file;
-      5.struct file_operations;
-      6.struct inode;
+        2.int alloc_chrdev_region(dev_t* dev,unsigned int firstminor,unsigned int count,char* name);
+        3.void unregister_chrdev_region(dev_t first,unsigned int count);
+        4.struct file;
+        5.struct file_operations;
+        6.struct inode;<br>
 
 * linux/cdev.h:<br>
 
         1.struct cdev cdev_alloc(void);
-      2.void cdev_init(struct cdev* dev,struct file_operations* fops);
-      3.int cdev_add(struct cdev* dev,dev_t num,unsigned int count);
-      4.void cdev_del(struct cdev* dev);
+        2.void cdev_init(struct cdev* dev,struct file_operations* fops);
+        3.int cdev_add(struct cdev* dev,dev_t num,unsigned int count);
+        4.void cdev_del(struct cdev* dev);<br>
 
 * linux/kernel.h:<br>
 
-        1. container_of(pointer,type,field);
+        1. container_of(pointer,type,field);<br>
 
 * asm/uaccess.h:<br>
         1. unsigned long copy_from_user(void* to,void* from,unsigned long count);
