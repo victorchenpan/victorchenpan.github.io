@@ -1,10 +1,10 @@
-### 内核驱动相关
-#### 一.关键头文件及内含的结构体，函数：
+### 内核驱动相关<br>
+#### 一.关键头文件及内含的结构体，函数：<br>
 * linux/types.h:<br>
-        1. dev_t;
-      2. int MAJOR(dev_t dev);<br>
-      3. int MINOR(dev_t dev);<br>
-      4. dev MKDEV(unsigned int major,unsigned int minor);<br>
+        1.dev_t;
+      2.int MAJOR(dev_t dev);<br>
+      3.int MINOR(dev_t dev);<br>
+      4.dev MKDEV(unsigned int major,unsigned int minor);<br>
 
 * linux/fs.h:<br>
         1.int register_chrdev_region(dev_t first,unsigned int count,char* name);
