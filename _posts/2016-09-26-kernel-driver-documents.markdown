@@ -4,20 +4,18 @@
 
 
 * linux/types.h:<br>
-
-    1.dev_t;
-    2.int MAJOR(dev_t dev);
-    3.int MINOR(dev_t dev);
+>   1.dev_t;<br>
+    2.int MAJOR(dev_t dev);<br>
+    3.int MINOR(dev_t dev);<br>
     4.dev MKDEV(unsigned int major,unsigned int minor);<br>
 
 * linux/fs.h:<br>
-
-    1.int register_chrdev_region(dev_t first,unsigned int count,char* name);
-    2.int alloc_chrdev_region(dev_t* dev,unsigned int firstminor,unsigned int count,char* name);
-    3.void unregister_chrdev_region(dev_t first,unsigned int count);
-    4.struct file;
-    5.struct file_operations;
-    6.struct inode;
+>    1.int register_chrdev_region(dev_t first,unsigned int count,char* name);<br>
+    2.int alloc_chrdev_region(dev_t* dev,unsigned int firstminor,unsigned int count,char* name);<br>
+    3.void unregister_chrdev_region(dev_t first,unsigned int count);<br>
+    4.struct file;<br>
+    5.struct file_operations;<br>
+    6.struct inode;<br>
 
 * linux/cdev.h:<br>
 
